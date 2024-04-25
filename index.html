@@ -1,77 +1,65 @@
-<html>
-  <head>
-    <script
-      type="text/javascript"
-      src="https://www.gstatic.com/charts/loader.js"
-    ></script>
-    <script type="text/javascript">
-      google.charts.load("current", {
-        packages: ["corechart", "bar", "table"],
-      });
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+<style>
 
-      fetch(
-        "https://script.google.com/macros/s/AKfycbz1teyXYxbb1vz4Hg1BASUNeONHRGHxuJ_NS9sKJM8YajxQ-1UYSh8tQyzqv_6vZkGJ/exec?sheetName=Sheet1",
-        {
-          redirect: "follow",
-        }
-      )
-        .then((response) => response.text())
-        .then((result) => {
-          sheetData = JSON.parse(result);
-          drawChart(sheetData);
-        })
-        .catch((error) => console.log("error", error));
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+}
 
-      function drawChart(chartData) {
-        var data = google.visualization.arrayToDataTable(chartData);
+a {
+  text-decoration: none;
+}
 
-        var options = {
-          chart: {
-            title: "Company Performance",
-            subtitle: "Sales, Expenses, and Profit: 2014-2017",
-          },
-          bars: "horizontal",
-        };
+/* Setup body */
+body {
+  width: 100vw;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: rgba(255, 255, 255, 0.8);
+}
 
-        var chart = new google.charts.Bar(
-          document.getElementById("barchart_material")
-        );
-
-        chart.draw(data, google.charts.Bar.convertOptions(options));
+    .container {
+        position: fixed;
+        top: 0px; /* Adjust top position as needed */
+        width: 100%;
+        z-index: 1; /* Ensure the container is above the navigation */
+        background-color: rgba(255, 255, 255, 0.8); /* Adjust background color and opacity as needed */
+        padding: 0px; /* Add padding to separate the content from the edges */
+      }
+      .iframe-wrapper {
+        position: relative;
+        padding-top: 56.25%; /* Aspect ratio 16:9 */
       }
 
-      fetch(
-        "https://script.google.com/macros/s/AKfycbz1teyXYxbb1vz4Hg1BASUNeONHRGHxuJ_NS9sKJM8YajxQ-1UYSh8tQyzqv_6vZkGJ/exec?sheetName=Sheet2",
-        {
-          redirect: "follow",
-        }
-      )
-        .then((response) => response.text())
-        .then((result) => {
-          sheetData = JSON.parse(result);
-          drawTable(sheetData);
-        })
-        .catch((error) => console.log("error", error));
-
-      function drawTable(chartData) {
-        var data = google.visualization.arrayToDataTable(chartData);
-
-        var options = {
-          showRowNumber: true,
-          width: "80%",
-          height: "90%",
-        };
-
-        var table = new google.visualization.Table(
-          document.getElementById("table_div")
-        );
-
-        table.draw(data, options);
+      iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
       }
-    </script>
-  </head>
-  <body>
-    <div id="barchart_material" style="width: 900px; height: 500px"></div>
-    <div id="table_div" style="margin-top: 40px"></div>
-  </body>
+
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="iframe-wrapper">
+      <!-- Replace 'YOUR_GOOGLE_APPS_SCRIPT_URL' with the URL of your Google Apps Script -->
+      <iframe src="https://script.google.com/macros/s/AKfycbwfKR9c06yeO_ryosA2tk1VWBbauV5m4RosGPE_uumfkGpjjj32GlZ5Ek19oSrENVRv/exec"></iframe>
+    </div>
+  </div>
+
+</body>
 </html>
